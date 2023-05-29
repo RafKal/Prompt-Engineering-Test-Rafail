@@ -5,4 +5,4 @@ opencv-python==4.7.0.72
 pandas==1.5.2
 PyYAML==6.0
 transformers==4.29.2
-clean-fid=0.1.35
+clean-fid==0.1.35
