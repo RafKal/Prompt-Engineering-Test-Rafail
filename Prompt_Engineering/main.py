@@ -121,15 +121,15 @@ if __name__ == "__main__":
     mask = Image.open("./df6667e9-7573-41c4-b263-3fc4d4b88c93_mask.jpg")
 
     images_per_prompt = 1
-    guidance_scale = 2
+    guidance_scale = 5
     num_inference_steps = 100
 
     # Call pipeline.run as you wish
-    for _ in range(5):
+    for _ in range(20):
         inpaint_pipeline.run(
             image=image,
             mask=mask,
-            prompt="Photography of a red Volkswagen Golf 8",
+            prompt="Photo, green Volkswagen Golf",
             negative_prompt="White, Grey, Deformed",
             guidance_scale=guidance_scale,
             images_per_prompt=images_per_prompt,
