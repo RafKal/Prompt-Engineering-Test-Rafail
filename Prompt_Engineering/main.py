@@ -121,21 +121,24 @@ if __name__ == "__main__":
     image = Image.open("./df6667e9-7573-41c4-b263-3fc4d4b88c93_image.jpg")
     mask = Image.open("./df6667e9-7573-41c4-b263-3fc4d4b88c93_mask.jpg")
 
-    images_per_prompt = 1
-    guidance_scale = 2
+    images_per_prompt = 20
+    guidance_scale = 5
     num_inference_steps = 100
+    prompts = ["Green volkswagen Golf", "Green volkswagen golf, detailed"]
 
+    
     # Call pipeline.run as you wish
-    for _ in range(5):
-        inpaint_pipeline.run(
-            image=image,
-            mask=mask,
-            prompt="Photography of a red Volkswagen Golf 8",
-            negative_prompt="White, Grey, Deformed",
-            guidance_scale=guidance_scale,
-            images_per_prompt=images_per_prompt,
-            num_inference_steps=num_inference_steps,
-        )
+    for prompt in prompts:    
+        for _ in range(5):
+            inpaint_pipeline.run(
+                image=image,
+                mask=mask,
+                prompt=prompt,
+                negative_prompt="White, Grey, Deformed",
+                guidance_scale=guidance_scale,
+                images_per_prompt=images_per_prompt,
+                num_inference_steps=num_inference_steps,
+            )
     # for _ in range(0):
     #     text2img_pipeline.run(
     #         prompt="Photography of a red Volkswagen Golf 8",
