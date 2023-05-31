@@ -47,14 +47,14 @@ class PromptEngineeringBase:
         elif scheduler == "DPM":
             self.pipe.scheduler = DPMSolverMultistepScheduler.from_config(self.pipe.scheduler.config)
 
-    def save_image(self, image:Image.Image, annotation:dict):
+    def save_image(self, image:Image.Image, annotation:dict, prompt:str):
         image_uuid = str(uuid.uuid4())
         annotation["image_uuid"] = image_uuid
         with open(f"{self.save_path}/annotations.txt","a") as anno_txt:
             anno_txt.write(json.dumps(annotation))
-        image.save(f"{self.save_path}/image_{image_uuid}.jpg")
+        image.save(f"{self.save_path}/image_{prompt}.jpg")
 
-        print(f"{self.save_path}") #RK
+        #print(f"{self.save_path}")
 
 class PromptEngineeringInpainting(PromptEngineeringBase):
     def __init__(self, gpu:bool=True, scheduler:str=None):
@@ -83,8 +83,9 @@ class PromptEngineeringInpainting(PromptEngineeringBase):
             self.save_image(out_image, {
                 "prompt":prompt,
                 "negative_prompt":negative_prompt,
-                "guidance_scale":guidance_scale
-            })
+                "guidance_scale":guidance_scale,
+
+            },  prompt = prompt)
 
 class PromptEngineeringText2Img(PromptEngineeringBase):
     def __init__(self, gpu:bool=True,scheduler:str=None):
@@ -121,29 +122,29 @@ if __name__ == "__main__":
     mask = Image.open("./df6667e9-7573-41c4-b263-3fc4d4b88c93_mask.jpg")
 
     images_per_prompt = 1
-    guidance_scale = 5
+    guidance_scale = 2
     num_inference_steps = 100
 
     # Call pipeline.run as you wish
-    for _ in range(20):
+    for _ in range(5):
         inpaint_pipeline.run(
             image=image,
             mask=mask,
-            prompt="Photo, green Volkswagen Golf",
-            negative_prompt="White, Grey, Deformed",
-            guidance_scale=guidance_scale,
-            images_per_prompt=images_per_prompt,
-            num_inference_steps=num_inference_steps
-        )
-    for _ in range(0):
-        text2img_pipeline.run(
             prompt="Photography of a red Volkswagen Golf 8",
             negative_prompt="White, Grey, Deformed",
             guidance_scale=guidance_scale,
             images_per_prompt=images_per_prompt,
             num_inference_steps=num_inference_steps,
-            height=512,
-            width=512
         )
-
-    print("Hello!")
+    # for _ in range(0):
+    #     text2img_pipeline.run(
+    #         prompt="Photography of a red Volkswagen Golf 8",
+    #         negative_prompt="White, Grey, Deformed",
+    #         guidance_scale=guidance_scale,
+    #         images_per_prompt=images_per_prompt,
+    #         num_inference_steps=num_inference_steps,
+    #         height=512,
+    #         width=512
+    #     )
+    #
+    # print("Hello!")
