@@ -4,7 +4,7 @@ from PIL import Image
 import uuid
 import json
 import os
-import cleanfid
+
 
 class PromptEngineeringBase:
     def __init__(self, pipe:DiffusionPipeline, scheduler, gpu:bool=True):
@@ -52,7 +52,7 @@ class PromptEngineeringBase:
         annotation["image_uuid"] = image_uuid
         with open(f"{self.save_path}/annotations.txt","a") as anno_txt:
             anno_txt.write(json.dumps(annotation))
-        image.save(f"{self.save_path}/image_{prompt}{image_uuid}.jpg")
+        image.save(f"{self.save_path}/image_{prompt}__{image_uuid}.jpg")
 
         #print(f"{self.save_path}")
 
@@ -122,19 +122,21 @@ if __name__ == "__main__":
     mask = Image.open("./df6667e9-7573-41c4-b263-3fc4d4b88c93_mask.jpg")
 
     images_per_prompt = 20
-    guidance_scale = 5
+    guidance_scale = 8
     num_inference_steps = 100
-    prompts = ["Green volkswagen Golf", "Green volkswagen golf, detailed"]
+    prompts = ["A Green volkswagen Golf on the street", "A Green volkswagen golf on the street, detailed"]
 
+    negative_prompt = "unnatural, unrealistic, cartoon, illustration, painting, drawing, unreal engine, oversaturated, low saturation, surreal, underexposed, overexposed, jpeg artifacts, conjoined, aberrations, multiple levels, harsh lighting, anime, sketches ,twisted video game ,photoshop, creative, UI, abstract, collapsed"
+    
     
     # Call pipeline.run as you wish
     for prompt in prompts:    
-        for _ in range(5):
+        for _ in range(10):
             inpaint_pipeline.run(
                 image=image,
                 mask=mask,
                 prompt=prompt,
-                negative_prompt="White, Grey, Deformed",
+                negative_prompt=negative_prompt,
                 guidance_scale=guidance_scale,
                 images_per_prompt=images_per_prompt,
                 num_inference_steps=num_inference_steps,
