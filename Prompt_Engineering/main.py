@@ -52,7 +52,7 @@ class PromptEngineeringBase:
         annotation["image_uuid"] = image_uuid
         with open(f"{self.save_path}/annotations.txt","a") as anno_txt:
             anno_txt.write(json.dumps(annotation))
-        image.save(f"{self.save_path}/image_{prompt}.jpg")
+        image.save(f"{self.save_path}/image_{prompt}{image_uuid}.jpg")
 
         #print(f"{self.save_path}")
 
