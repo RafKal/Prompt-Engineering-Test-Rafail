@@ -121,7 +121,7 @@ if __name__ == "__main__":
     image = Image.open("./df6667e9-7573-41c4-b263-3fc4d4b88c93_image.jpg")
     mask = Image.open("./df6667e9-7573-41c4-b263-3fc4d4b88c93_mask.jpg")
 
-    images_per_prompt = 20
+    images_per_prompt = 1
     guidance_scale = 8
     num_inference_steps = 100
     prompts = ["A Green volkswagen Golf on the street", "A Green volkswagen golf on the street, detailed"]
@@ -131,7 +131,7 @@ if __name__ == "__main__":
     
     # Call pipeline.run as you wish
     for prompt in prompts:    
-        for _ in range(10):
+        for _ in range(200):
             inpaint_pipeline.run(
                 image=image,
                 mask=mask,
