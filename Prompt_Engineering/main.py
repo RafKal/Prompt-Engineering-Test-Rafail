@@ -129,7 +129,7 @@ if __name__ == "__main__":
     #           "A Green volkswagen Golf on the street, detailed tires"
     #           "A Green volkswagen Golf on the street, detailed headlights"]
     
-     prompts = ["A Green volkswagen Golf on the street, detailed headlights",
+    prompts = ["A Green volkswagen Golf on the street, detailed headlights",
                 "A Green volkswagen Golf on the street, front side",
                 "A Green volkswagen Golf on the street, long shot",
                 "A Green volkswagen Golf on the street, isometric front view",
