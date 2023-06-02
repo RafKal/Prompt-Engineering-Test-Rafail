@@ -126,9 +126,7 @@ if __name__ == "__main__":
     num_inference_steps = 100
     prompts = ["A Green volkswagen Golf on the street", 
                "A Green volkswagen golf on the street, detailed",
-               "A Green volkswagen Golf on the street, detailed tires", 
-               "A Green volkswagen golf on the street, detailed tires, front side",
-               "A Green volkswagen golf on the street, detailed tires, front side, 8K"]
+               "A Green volkswagen Golf on the street, detailed tires"]
 
     negative_prompt = "unnatural, unrealistic, cartoon, illustration, painting, drawing, unreal engine, oversaturated, low saturation, surreal, underexposed, overexposed, jpeg artifacts, conjoined, aberrations, multiple levels, harsh lighting, anime, sketches ,twisted video game ,photoshop, creative, UI, abstract, collapsed"
     
