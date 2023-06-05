@@ -145,18 +145,18 @@ if __name__ == "__main__":
     
     
     # Call pipeline.run as you wish
-    for i in range(3):
-        for prompt in prompts:    
-            for _ in range(100):
-                inpaint_pipeline.run(
-                    image=image,
-                    mask=mask,
-                    prompt=prompt,
-                    negative_prompt=negative_prompt,
-                    guidance_scale=guidance_scale,
-                    images_per_prompt=images_per_prompt,
-                    num_inference_steps=num_inference_steps,
-                )
+
+    for prompt in prompts:    
+        for _ in range(100):
+            inpaint_pipeline.run(
+                image=image,
+                mask=mask,
+                prompt=prompt,
+                negative_prompt=negative_prompt,
+                guidance_scale=guidance_scale,
+                images_per_prompt=images_per_prompt,
+                num_inference_steps=num_inference_steps,
+            )
     # for _ in range(0):
     #     text2img_pipeline.run(
     #         prompt="Photography of a red Volkswagen Golf 8",
