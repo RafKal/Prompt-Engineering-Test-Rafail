@@ -145,9 +145,9 @@ if __name__ == "__main__":
     
     
     # Call pipeline.run as you wish
-
+    images_per_prompt = 1
     for prompt in prompts:    
-        for _ in range(100):
+        for _ in range(10):
             inpaint_pipeline.run(
                 image=image,
                 mask=mask,
