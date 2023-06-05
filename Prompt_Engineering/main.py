@@ -129,28 +129,34 @@ if __name__ == "__main__":
     #           "A Green volkswagen Golf on the street, detailed tires"
     #           "A Green volkswagen Golf on the street, detailed headlights"]
     
-    prompts = ["A Green volkswagen Golf on the street, detailed headlights",
-                "A Green volkswagen Golf on the street, front side",
-                "A Green volkswagen Golf on the street, long shot",
-                "A Green volkswagen Golf on the street, isometric front view",
-                "A Green volkswagen Golf on the street, daytime",
-                "A Green volkswagen Golf on the street, used, symmetric"]
+    prompts = ["A White volkswagen Golf on the street",
+              "A White volkswagen golf on the street, detailed",
+              "A White volkswagen Golf on the street, detailed headlights",
+              "A White volkswagen Golf on the street, detailed tires",
+              "A White volkswagen Golf on the street, front side",
+              "A White volkswagen Golf on the street, long shot",
+              "A White volkswagen Golf on the street, isometric front view",
+              "A White volkswagen Golf 7 on the street, isometric front view",
+              "A White volkswagen Golf on the street, daytime",
+              "A White volkswagen Golf on the street, used, symmetric",
+              "A White volkswagen Golf on the street, daytime, front side, isometric front view"]
 
     negative_prompt = "unnatural, unrealistic, cartoon, illustration, painting, drawing, unreal engine, oversaturated, low saturation, surreal, underexposed, overexposed, jpeg artifacts, conjoined, aberrations, multiple levels, harsh lighting, anime, sketches ,twisted video game ,photoshop, creative, UI, abstract, collapsed"
     
     
     # Call pipeline.run as you wish
-    for prompt in prompts:    
-        for _ in range(200):
-            inpaint_pipeline.run(
-                image=image,
-                mask=mask,
-                prompt=prompt,
-                negative_prompt=negative_prompt,
-                guidance_scale=guidance_scale,
-                images_per_prompt=images_per_prompt,
-                num_inference_steps=num_inference_steps,
-            )
+    for i in range(3):
+        for prompt in prompts:    
+            for _ in range(100):
+                inpaint_pipeline.run(
+                    image=image,
+                    mask=mask,
+                    prompt=prompt,
+                    negative_prompt=negative_prompt,
+                    guidance_scale=guidance_scale,
+                    images_per_prompt=images_per_prompt,
+                    num_inference_steps=num_inference_steps,
+                )
     # for _ in range(0):
     #     text2img_pipeline.run(
     #         prompt="Photography of a red Volkswagen Golf 8",
