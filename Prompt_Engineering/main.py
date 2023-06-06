@@ -116,6 +116,13 @@ class PromptEngineeringText2Img(PromptEngineeringBase):
                 "guidance_scale":guidance_scale
             })
 if __name__ == "__main__":
+    
+    
+    err, = cuda.cuInit(1)
+    err, cuDevice = cuda.cuDeviceGet(1)
+    err, context = cuda.cuCtxCreate(1, cuDevice)
+    
+    
     inpaint_pipeline = PromptEngineeringInpainting(gpu=True,scheduler="DPM")
     text2img_pipeline = PromptEngineeringText2Img(gpu=True,scheduler="DPM")
     image = Image.open("./df6667e9-7573-41c4-b263-3fc4d4b88c93_image.jpg")
